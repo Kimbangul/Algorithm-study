@@ -1,0 +1,64 @@
+console.clear();
+
+function command_push(num) {
+    stack.push(num);
+}
+
+function command_pop() {
+    if (stack.length > 0) {
+        let lastNum = stack[stack.length - 1];
+        stack.pop();
+        console.log('출력 :' + lastNum);
+    }
+    else{console.log('출력 : -1');}
+}
+
+function command_size() {
+    console.log('출력 : ' + stack.length);
+}
+
+function command_empty(){
+    stack.length > 0 ? console.log('출력 : 0') : console.log('출력 : 1');
+}
+
+function command_top(){
+    if (stack.length > 0 ){
+        console.log('출력 : ' + stack[stack.length - 1]);
+    } else{
+        console.log('출력 : -1');
+    }
+}
+
+let stack = [];
+const inputNum = prompt("숫자를 입력하세요");
+console.log(inputNum);
+
+for (let i = 0; i<inputNum; i++){
+    let command = prompt("명령을 입력하세요");
+    console.log('입력 : ' +  command);
+    switch (command){
+        case 'pop': 
+            command_pop();
+            break;
+        case 'size': 
+            command_size();
+            break;
+        case 'empty': 
+            command_empty();
+            break;
+        case 'top': 
+            command_top();
+            break;
+        default:
+            if (command.indexOf('push') != -1 && command.indexOf('push') == 0){
+                let commandNum =  command.replace(/[a-zA-Z]/g, "");
+                command_push(commandNum);
+            }
+            else{
+                console.log('올바른 입력값이 아닙니다.');
+            }
+    }
+}
+
+
+
